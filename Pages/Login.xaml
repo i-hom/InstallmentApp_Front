@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:InstallmentApp_Front.ViewModel"
+             x:Class="InstallmentApp_Front.Pages.Login"
+             x:DataType="viewmodel:CabinetViewModel"
+             Title="Login">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="25">
+        <Image Source="placeholder.png" WidthRequest="200"/>
+        <Entry Text="{Binding PhoneNumber}" Placeholder="PhoneNumber" Keyboard="Telephone" IsEnabled="{Binding IsNotBusy}"/>
+        <Entry Text="{Binding Password}" Placeholder="Password" IsPassword="True" IsEnabled="{Binding IsNotBusy}"/>
+        <Button Text="Sign In" Command="{Binding SignInCommand}" IsEnabled="{Binding IsNotBusy}"/>
+    </VerticalStackLayout>
+</ContentPage>

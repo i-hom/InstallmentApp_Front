@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:InstallmentApp_Front.ViewModel"
+             xmlns:model="clr-namespace:InstallmentApp_Front.Model"
+             x:Class="InstallmentApp_Front.Pages.Cabinet"
+             x:DataType="viewmodel:CabinetViewModel"
+             Title="Cabinet">
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Opacity="150">
+            <VerticalStackLayout HeightRequest="150" Spacing="15" Margin="15">
+                <Label Text="{Binding User_info.FullName}" HorizontalOptions="Start" FontAttributes="Bold" FontSize="20"/>
+                <Label Text="{Binding User_info.CashBack, StringFormat='Current CashBack: {0}'}" HorizontalOptions="Start"/>
+            </VerticalStackLayout>
+            <Button HorizontalOptions="End" CornerRadius="15" HeightRequest="50" WidthRequest="50" ImageSource="plus.jpg" Margin="10" Command="{Binding GoToCardAddCommand}"/>
+            <Frame Padding="10" Margin="10" Style="{StaticResource CardView}">
+                <CollectionView ItemsSource="{Binding User_info.Cards}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Card">
+                            <Frame Margin="10" HeightRequest="150" FlowDirection="RightToLeft" BackgroundColor="LightBlue">
+                                <VerticalStackLayout Spacing="5" VerticalOptions="Center">
+                                    <Label Text="{Binding Balance}" FlowDirection="LeftToRight" TextColor="Black" FontSize="20"/>
+                                    <Label Text="{Binding Number}"  CharacterSpacing="3" TextColor="Black"/>
+                                    <Label Text="{Binding ExpDate}" CharacterSpacing="1" TextColor="Black"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

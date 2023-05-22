@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:InstallmentApp_Front.ViewModel"
+             x:Class="InstallmentApp_Front.Pages.CardAdd"
+             x:DataType="viewmodel:CabinetViewModel"
+             Shell.TabBarIsVisible="False"
+             Title="Card Add">
+    <VerticalStackLayout HorizontalOptions="Center" VerticalOptions="Center" Spacing="25">
+        <Entry Text="{Binding Cardnumber}" Placeholder="Card Number" Keyboard="Telephone"/>
+        <Entry Text="{Binding Cardexpdate}" Placeholder="mmyy" Keyboard="Telephone"/>
+        <Button Text="Add Card" Command="{Binding AddCardCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

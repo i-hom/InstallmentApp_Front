@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="InstallmentApp_Front.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:pages="clr-namespace:InstallmentApp_Front.Pages"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate pages:Login}"
+        Route="Login" />
+
+    <TabBar>
+        <ShellContent
+            Title="Installment"
+            Icon="installment.ico"
+            ContentTemplate="{DataTemplate pages:Installment}"
+            Route="Installment" />
+        <ShellContent
+            Title="Cabinet"
+            Icon="cabinet.ico"
+            ContentTemplate="{DataTemplate pages:Cabinet}"
+            Route="Cabinet" />
+    </TabBar>
+</Shell>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:InstallmentApp_Front.ViewModel"
+             xmlns:model="clr-namespace:InstallmentApp_Front.Model"
+             x:Class="InstallmentApp_Front.Pages.Installment"
+             x:DataType="viewmodel:CabinetViewModel"
+             Title="Installment">
+    
+    <VerticalStackLayout Opacity="20">
+        <CollectionView ItemsSource="{Binding User_info.Installments}" Margin="20">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Installment">
+                    <Frame Style="{StaticResource CardView}" Margin="10">
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:CabinetViewModel}}, Path=GoToDetailsCommand}"
+                                                  CommandParameter="{Binding .}"/>
+                        </Frame.GestureRecognizers>
+                        <VerticalStackLayout Spacing="10" Padding="10">
+                            <Label Text="{Binding ElmakonID, StringFormat='ID: {0}'}"/>
+                            <Label>
+                                <Label.Text>
+                                    <MultiBinding StringFormat="{}Item: {0} {1}&#10;&#10;Balance: {2}         Monthly: {3}">
+                                        <Binding Path="Item.Brand"/>
+                                        <Binding Path="Item.FullName"/>
+                                        <Binding Path="Balance"/>
+                                        <Binding Path="MonthlyPayment"/>
+                                    </MultiBinding>
+                                </Label.Text>
+                            </Label>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </VerticalStackLayout>
+</ContentPage>

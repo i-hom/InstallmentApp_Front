@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodel="clr-namespace:InstallmentApp_Front.ViewModel"
+             xmlns:model="clr-namespace:InstallmentApp_Front.Model"
+             x:Class="InstallmentApp_Front.Pages.DetailsPage"
+             x:DataType="viewmodel:DetailsViewModel"
+             Title="{Binding Details.Installment.ElmakonID}"
+             Shell.TabBarIsVisible="False">
+    
+    <ScrollView VerticalScrollBarVisibility="Never">
+        <VerticalStackLayout Padding="14" Spacing="10">
+            <Frame Style="{StaticResource CardView}">
+                <HorizontalStackLayout Padding="5">
+                    <Image Source="{Binding Details.Installment.Item.Image}" WidthRequest="100"/>
+                    <Grid ColumnDefinitions="*,150" RowDefinitions="*,*,*" ColumnSpacing="5">
+                        <Label Grid.ColumnSpan="2" Grid.Row="0" Text="{Binding Details.Installment.Item.Brand}"/>
+                        <Label Grid.ColumnSpan="2" Grid.Row="1" Text="{Binding Details.Installment.Item.FullName}"/>
+                        <Label Grid.Column="0" Grid.Row="2" Text="{Binding Details.Installment.Balance, StringFormat='Balance: {0}'}"/>
+                        <Label Grid.Column="1" Grid.Row="2" Text="{Binding Details.Installment.MonthlyPayment, StringFormat='Monthly: {0}'}"/>
+                    </Grid>
+                </HorizontalStackLayout>
+            </Frame>
+            <Label Text="Payments" FontSize="24"/>
+            <Frame Style="{StaticResource CardView}">
+                <Grid Padding="10">
+                    <CollectionView ItemsSource="{Binding Details.Installment.Payments}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Payment">
+                                <Grid ColumnDefinitions="150,60,150">
+                                    <Label Grid.Column="0" Text="{Binding Date}"/>
+                                    <Label Grid.Column="1" Text="{Binding Amount}"/>
+                                    <Label Grid.Column="2" Text="{Binding Method}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </Frame>
+            <Label Text="Cards" FontSize="24"/>
+            <Frame Padding="10" Margin="10" Style="{StaticResource CardView}" WidthRequest="355">
+                <CollectionView x:Name="Cards" ItemsSource="{Binding Details.Cards}" SelectionMode="Single" WidthRequest="335">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" SnapPointsType="MandatorySingle"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Card">
+                            <Frame Margin="10" HeightRequest="150" WidthRequest="315" FlowDirection="RightToLeft" BackgroundColor="SkyBlue">
+                                <VerticalStackLayout Spacing="15" VerticalOptions="Center">
+                                    <Label Text="{Binding Number}"  CharacterSpacing="3" TextColor="Black"/>
+                                    <Label Text="{Binding ExpDate}" CharacterSpacing="1" TextColor="Black"/>
+                                </VerticalStackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+            <Label Text="Payment Value" FontSize="24"/>
+            <Entry Placeholder="0" Keyboard="Numeric" WidthRequest="360" Text="{Binding Amount}" CursorPosition="0"/>
+            <Button Text="Pay" WidthRequest="360" HeightRequest="50" Margin="10" Command="{Binding PayCommand}"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
