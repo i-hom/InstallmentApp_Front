@@ -1,6 +1,4 @@
-﻿using MongoDB.Bson;
-
-namespace InstallmentApp_Front.Model;
+﻿namespace InstallmentApp_Front.Model;
 
 public class Card
 {

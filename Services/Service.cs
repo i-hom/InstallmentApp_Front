@@ -9,8 +9,8 @@ public class Installment_Service
     public async Task<T> Request<T>(string requestmsg)
     {
         HttpClient client = new();
-        //HttpRequestMessage request = new(HttpMethod.Get, "http://192.168.0.77:7777/EndPoint");
-        HttpRequestMessage request = new(HttpMethod.Get, "http://192.168.144.235:7777/EndPoint");
+        HttpRequestMessage request = new(HttpMethod.Get, "http://192.168.0.77:7777/EndPoint");
+        //HttpRequestMessage request = new(HttpMethod.Get, "http://10.10.10.5:7777/EndPoint");
         //HttpRequestMessage request = new(HttpMethod.Get, "http://192.168.233.88:7777/EndPoint");
         //HttpRequestMessage request = new(HttpMethod.Get, "https://c482-34-155-154-31.ngrok-free.app");
 
